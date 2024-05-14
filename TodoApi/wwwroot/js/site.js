@@ -161,6 +161,10 @@ function _displayItems(data) {
         isCompleteCheckbox.checked = item.isComplete;
 
         let isCheck = (item.isComplete == true) ? "yes" : "no";
+        let newElement = document.createElement("p");
+        let newContent = document.createTextNode(isCheck);
+        newElement.appendChild(newContent);
+        newElement.setAttribute("id", "ischeck");
 
         let detailButton = button.cloneNode(false);
         detailButton.innerText = 'Detail';
@@ -178,7 +182,7 @@ function _displayItems(data) {
 
         let td1 = tr.insertCell(0);
         td1.appendChild(isCompleteCheckbox);
-        td1.append(document.createTextNode(isCheck))
+        td1.appendChild(newElement);
 
         let td2 = tr.insertCell(1);
         let textNode = document.createTextNode(item.name);

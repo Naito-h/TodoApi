@@ -1,0 +1,44 @@
+﻿body {
+}
+input[type='submit'], button, [aria-label] {
+    cursor: pointer;
+}
+
+#editForm {
+    display: none;
+}
+
+#detailForm {
+    display: none;
+}
+
+table {
+    font-family: Arial, sans-serif;
+    border: 1px solid;
+    border-collapse: collapse;
+    border-color: black;
+}
+
+th {
+    background-color: #f8f8f8;
+    padding: 5px;
+}
+
+td {
+    border: 1px solid;
+    border-color: black;
+    padding: 5px;
+    /*color: black;*/
+}
+
+#ischeck{
+    display: none;
+}
+
+/*editForm input:checked ~ input#edit-name{
+    background-color: red;
+}*/
+
+/*#todos tr:nth-child(1) td:nth-child(1) {
+    background-color: red;
+}*/
