@@ -134,13 +134,14 @@ function ChangeColor() {
         let cell2 = row.cells.item(1);
         let cell3 = row.cells.item(2);
         
-        if (cell2.textContent=="test2") {
+        if (cell1.textContent=="yes") {
             cell2.style.color = 'red';
             cell3.style.color = 'red';
         } else {
             cell2.style.color = 'blue';
             cell3.style.color = 'blue';
-            console.log(cell2.textContent);
+            console.log(cell1);
+            console.log(cell1.textContent);
         }
     }
 }
@@ -156,8 +157,10 @@ function _displayItems(data) {
     data.forEach(item => {
         let isCompleteCheckbox = document.createElement('input');
         isCompleteCheckbox.type = 'checkbox';
-        isCompleteCheckbox.disabled = false;
+        isCompleteCheckbox.disabled = true;
         isCompleteCheckbox.checked = item.isComplete;
+
+        let isCheck = (item.isComplete == true) ? "yes" : "no";
 
         let detailButton = button.cloneNode(false);
         detailButton.innerText = 'Detail';
@@ -175,6 +178,7 @@ function _displayItems(data) {
 
         let td1 = tr.insertCell(0);
         td1.appendChild(isCompleteCheckbox);
+        td1.append(document.createTextNode(isCheck))
 
         let td2 = tr.insertCell(1);
         let textNode = document.createTextNode(item.name);
