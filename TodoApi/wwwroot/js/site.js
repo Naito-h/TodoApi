@@ -133,8 +133,19 @@ function ChangeColor() {
         let cell1 = row.cells.item(0);
         let cell2 = row.cells.item(1);
         let cell3 = row.cells.item(2);
-        
-        if (cell1.textContent=="yes") {
+
+
+        if (cell1.firstChild.checked) {
+            cell2.style.color = 'red';
+            cell3.style.color = 'red';
+        } else {
+            cell2.style.color = 'blue';
+            cell3.style.color = 'blue';
+            //console.log(cell1);
+            //console.log(cell1.firstChild.checked);
+        }
+
+        /*if (cell1.textContent=="yes") {
             cell2.style.color = 'red';
             cell3.style.color = 'red';
         } else {
@@ -142,7 +153,7 @@ function ChangeColor() {
             cell3.style.color = 'blue';
             console.log(cell1);
             console.log(cell1.textContent);
-        }
+        }*/
     }
 }
 
@@ -182,7 +193,7 @@ function _displayItems(data) {
 
         let td1 = tr.insertCell(0);
         td1.appendChild(isCompleteCheckbox);
-        td1.appendChild(newElement);
+        //td1.appendChild(newElement);
 
         let td2 = tr.insertCell(1);
         let textNode = document.createTextNode(item.name);
