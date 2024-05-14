@@ -128,17 +128,16 @@ function _displayCount(itemCount) {
 }
 
 function ChangeColor() {
+    for (let i = 0; i < document.getElementById("todos").rows.length; i++) {
+        let row = document.getElementById("todos").rows.item(i);
+        let cell1 = row.cells.item(0);
+        let cell2 = row.cells.item(1);
 
-    var row = document.getElementById("todos").rows.item(0);
-    var cell1 = row.cells.item(0);
-    var cell2 = row.cells.item(1);
-
-    //document.getElementById("todos").style.color = 'blue';
-
-    if (cell1.checked == true) {
-        cell2.style.color = 'red';
-    } else {
-        cell2.style.color = 'blue';
+        if (cell1.checked) {
+            cell2.style.color = 'red';
+        } else {
+            cell2.style.color = 'blue';
+        }
     }
 }
 
