@@ -127,16 +127,20 @@ function _displayCount(itemCount) {
     document.getElementById('counter').innerText = `${itemCount} ${name}`;
 }
 
-/*function chkcolor(chkID) {
-    Myid = document.getElementById(chkID);
-    if (Myid.checked == true) {
-        Myid.parentNode.style.backgroundColor = '#CC28A8';
-        Myid.parentNode.style.color = '#FFFFFF';
+function ChangeColor() {
+
+    var row = document.getElementById("todos").rows.item(0);
+    var cell1 = row.cells.item(0);
+    var cell2 = row.cells.item(1);
+
+    //document.getElementById("todos").style.color = 'blue';
+
+    if (cell1.checked == true) {
+        cell2.style.color = 'red';
     } else {
-        Myid.parentNode.style.backgroundColor = '#ffffff';
-        Myid.parentNode.style.color = '#333333';
+        cell2.style.color = 'blue';
     }
-}*/
+}
 
 function _displayItems(data) {
     const tBody = document.getElementById('todos');
@@ -186,6 +190,8 @@ function _displayItems(data) {
         let td6 = tr.insertCell(5);
         td6.appendChild(deleteButton);
     });
+
+    ChangeColor();
 
     todos = data;
 }
