@@ -14,6 +14,7 @@ function addItem() {
 
     const item = {
         isComplete: false,
+        state: "new",
         name: addNameTextbox.value.trim(),
         detail: addDetailTextbox.value.trim()
     };
@@ -49,6 +50,7 @@ function displayEditForm(id) {
     document.getElementById('edit-name').value = item.name;
     document.getElementById('edit-id').value = item.id;
     document.getElementById('edit-isComplete').checked = item.isComplete;
+    document.getElementById('edit-state').value = item.state;
     document.getElementById('edit-detail').value = item.detail;
     document.getElementById('editForm').style.display = 'block';
 }
@@ -68,6 +70,7 @@ function updateItem() {
     const item = {
         id: parseInt(itemId, 10),
         isComplete: document.getElementById('edit-isComplete').checked,
+        state: document.getElementById('edit-state').value,
         name: document.getElementById('edit-name').value.trim(),
         detail: document.getElementById('edit-detail').value.trim()
     };
@@ -136,7 +139,27 @@ function ChangeColor() {
 
         let input = cell1.getElementsByTagName('input');
 
-        if (input[0].checked) {
+        if (cell1.textContent == "new") {
+            cell1.style.color = 'red';
+            cell2.style.textDecoration = 'none';
+            cell3.style.textDecoration = 'none';
+        } else if (cell1.textContent == "active") {
+            cell1.style.color = 'blue';
+            cell2.style.textDecoration = 'none';
+            cell2.style.color = 'blue';
+            cell3.style.textDecoration = 'none';
+            cell3.style.color = 'blue';
+        } else if (cell1.textContent == "finished") {
+            cell1.style.color = 'black';
+            cell2.style.textDecoration = 'line-through';
+            cell3.style.textDecoration = 'line-through';
+        } else {
+            cell1.style.color = 'black';
+            cell2.style.textDecoration = 'line-through';
+            cell3.style.textDecoration = 'line-through';
+        }
+
+        /*if (input[0].checked) {
             cell2.style.textDecoration = 'line-through';
             cell2.style.color = 'red';
             cell3.style.textDecoration = 'line-through';
@@ -147,18 +170,9 @@ function ChangeColor() {
             cell3.style.textDecoration = 'none';
             cell3.style.color = 'blue';
             //console.log(cell1.firstChild);
-            console.log(input.item(0));
+            //console.log(input.item(0));
         }
-
-        /*if (cell1.textContent=="yes") {
-            cell2.style.color = 'red';
-            cell3.style.color = 'red';
-        } else {
-            cell2.style.color = 'blue';
-            cell3.style.color = 'blue';
-            console.log(cell1);
-            console.log(cell1.textContent);
-        }*/
+        */
     }
 }
 
@@ -175,6 +189,8 @@ function _displayItems(data) {
         isCompleteCheckbox.type = 'checkbox';
         isCompleteCheckbox.disabled = true;
         isCompleteCheckbox.checked = item.isComplete;
+
+        let stateElement = document.createTextNode(item.state);
 
         let isCheck = (item.isComplete == true) ? "yes" : "no";
         let newElement = document.createElement("p");
@@ -198,7 +214,8 @@ function _displayItems(data) {
         let tr = tBody.insertRow();
 
         let td1 = tr.insertCell(0);
-        td1.appendChild(isCompleteCheckbox);
+        //td1.appendChild(isCompleteCheckbox);
+        td1.appendChild(stateElement);
         //td1.appendChild(newElement);
 
         let td2 = tr.insertCell(1);
@@ -218,6 +235,9 @@ function _displayItems(data) {
 
         let td5 = tr.insertCell(4);
         td5.appendChild(deleteButton);
+
+        //let td6 = tr.insertCell(5);
+        //td6.appendChild(stateElement);
     });
 
     ChangeColor();

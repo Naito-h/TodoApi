@@ -17,8 +17,13 @@
     <div id="editForm">
         <h3>Edit To-do</h3>
         <form action="javascript:void(0);" onsubmit="updateItem()">
+            <select name="state" id="edit-state">
+                <option value="new">New</option>
+                <option value="active">Active</option>
+                <option value="finished">Finished</option>
+            </select>
             <input type="hidden" id="edit-id">
-            <input type="radio" id="edit-isComplete">
+            <input type="hidden" id="edit-isComplete">
             <input type="text" id="edit-name">
             <input type="text" id="edit-detail">
             <input type="submit" value="Save">
