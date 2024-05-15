@@ -31,6 +31,10 @@ td {
     /*color: black;*/
 }
 
+textbox {
+    text-align: top;
+}
+
 /*#ischeck{
     display: none;
 }*/

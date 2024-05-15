@@ -49,11 +49,11 @@ function displayEditForm(id) {
     document.getElementById('edit-name').value = item.name;
     document.getElementById('edit-id').value = item.id;
     document.getElementById('edit-isComplete').checked = item.isComplete;
-    //document.getElementById('edit-detail').value = item.detail;
+    document.getElementById('edit-detail').value = item.detail;
     document.getElementById('editForm').style.display = 'block';
 }
 
-function displayDetailForm(id) {
+/*function displayDetailForm(id) {
     const item = todos.find(item => item.id === id);
 
     document.getElementById('detail-name').value = item.name;
@@ -61,7 +61,7 @@ function displayDetailForm(id) {
     document.getElementById('detail-isComplete').checked = item.isComplete;
     document.getElementById('detail-detail').value = item.detail;
     document.getElementById('detailForm').style.display = 'block';
-}
+}*/
 
 function updateItem() {
     const itemId = document.getElementById('edit-id').value;
@@ -88,7 +88,7 @@ function updateItem() {
     return false;
 }
 
-function updateItem2() {
+/*function updateItem2() {
     const itemId = document.getElementById('detail-id').value;
     const item = {
         id: parseInt(itemId, 10),
@@ -111,15 +111,15 @@ function updateItem2() {
     closeInput2();
 
     return false;
-}
+}*/
 
 function closeInput() {
     document.getElementById('editForm').style.display = 'none';
 }
 
-function closeInput2() {
+/*function closeInput2() {
     document.getElementById('detailForm').style.display = 'none';
-}
+}*/
 
 function _displayCount(itemCount) {
     const name = (itemCount === 1) ? 'to-do' : 'to-dos';
@@ -182,9 +182,10 @@ function _displayItems(data) {
         newElement.appendChild(newContent);
         newElement.setAttribute("id", "ischeck");
 
-        let detailButton = button.cloneNode(false);
+        /*let detailButton = button.cloneNode(false);
         detailButton.innerText = 'Detail';
         detailButton.setAttribute('onclick', `displayDetailForm(${item.id})`);
+        */
 
         let editButton = button.cloneNode(false);
         editButton.innerText = 'Edit';
@@ -208,14 +209,15 @@ function _displayItems(data) {
         let textNode2 = document.createTextNode(item.detail);
         td3.appendChild(textNode2);
 
-        let td4 = tr.insertCell(3);
+        /*let td4 = tr.insertCell(3);
         td4.appendChild(detailButton);
+        */
+
+        let td4 = tr.insertCell(3);
+        td4.appendChild(editButton);
 
         let td5 = tr.insertCell(4);
-        td5.appendChild(editButton);
-
-        let td6 = tr.insertCell(5);
-        td6.appendChild(deleteButton);
+        td5.appendChild(deleteButton);
     });
 
     ChangeColor();
