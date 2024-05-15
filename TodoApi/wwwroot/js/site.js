@@ -134,15 +134,20 @@ function ChangeColor() {
         let cell2 = row.cells.item(1);
         let cell3 = row.cells.item(2);
 
+        let input = cell1.getElementsByTagName('input');
 
-        if (cell1.firstChild.checked) {
+        if (input[0].checked) {
+            cell2.style.textDecoration = 'line-through';
             cell2.style.color = 'red';
+            cell3.style.textDecoration = 'line-through';
             cell3.style.color = 'red';
         } else {
+            cell2.style.textDecoration = 'none';
             cell2.style.color = 'blue';
+            cell3.style.textDecoration = 'none';
             cell3.style.color = 'blue';
-            //console.log(cell1);
-            //console.log(cell1.firstChild.checked);
+            //console.log(cell1.firstChild);
+            console.log(input.item(0));
         }
 
         /*if (cell1.textContent=="yes") {
