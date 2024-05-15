@@ -51,6 +51,7 @@ function displayEditForm(id) {
     document.getElementById('edit-id').value = item.id;
     document.getElementById('edit-isComplete').checked = item.isComplete;
     document.getElementById('edit-state').value = item.state;
+    document.getElementById('edit-date').value = item.date;
     document.getElementById('edit-detail').value = item.detail;
     document.getElementById('editForm').style.display = 'block';
 }
@@ -71,6 +72,7 @@ function updateItem() {
         id: parseInt(itemId, 10),
         isComplete: document.getElementById('edit-isComplete').checked,
         state: document.getElementById('edit-state').value,
+        date: document.getElementById('edit-date').value,
         name: document.getElementById('edit-name').value.trim(),
         detail: document.getElementById('edit-detail').value.trim()
     };
@@ -134,15 +136,17 @@ function ChangeColor() {
     for (let i = 0; i < document.getElementById("todos").rows.length; i++) {
         let row = document.getElementById("todos").rows.item(i);
         let cell1 = row.cells.item(0);
-        let cell2 = row.cells.item(1);
-        let cell3 = row.cells.item(2);
+        let cell2 = row.cells.item(2);
+        let cell3 = row.cells.item(3);
 
         let input = cell1.getElementsByTagName('input');
 
         if (cell1.textContent == "new") {
             cell1.style.color = 'red';
             cell2.style.textDecoration = 'none';
+            cell2.style.color = 'red';
             cell3.style.textDecoration = 'none';
+            cell3.style.color = 'red';
         } else if (cell1.textContent == "active") {
             cell1.style.color = 'blue';
             cell2.style.textDecoration = 'none';
@@ -219,25 +223,32 @@ function _displayItems(data) {
         //td1.appendChild(newElement);
 
         let td2 = tr.insertCell(1);
-        let textNode = document.createTextNode(item.name);
-        td2.appendChild(textNode);
+        let newDate = document.createElement('input');
+        newDate.type = 'date';
+        newDate.value = item.date;
+        td2.appendChild(newDate);
+        //console.log(newDate);
+        //console.log(document.getElementById("edit-date"));
 
         let td3 = tr.insertCell(2);
+        let textNode = document.createTextNode(item.name);
+        td3.appendChild(textNode);
+
+        let td4 = tr.insertCell(3);
         let textNode2 = document.createTextNode(item.detail);
-        td3.appendChild(textNode2);
+        td4.appendChild(textNode2);
 
         /*let td4 = tr.insertCell(3);
         td4.appendChild(detailButton);
         */
 
-        let td4 = tr.insertCell(3);
-        td4.appendChild(editButton);
-
         let td5 = tr.insertCell(4);
-        td5.appendChild(deleteButton);
+        td5.appendChild(editButton);
 
-        //let td6 = tr.insertCell(5);
-        //td6.appendChild(stateElement);
+        let td6 = tr.insertCell(5);
+        td6.appendChild(deleteButton);
+
+       
     });
 
     ChangeColor();
